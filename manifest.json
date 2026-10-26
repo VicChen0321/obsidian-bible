@@ -1,0 +1,10 @@
+{
+  "id": "obsidian-bible",
+  "name": "Obsidian Bible",
+  "version": "0.1.0",
+  "minAppVersion": "1.5.0",
+  "description": "Keyboard-first Bible reference lookup and insertion in Traditional Chinese.",
+  "author": "Vic Chen",
+  "authorUrl": "https://vicchen.dev",
+  "isDesktopOnly": false
+}

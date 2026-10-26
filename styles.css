@@ -1,0 +1,53 @@
+.obsidian-bible-modal {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-4-3);
+}
+
+.obsidian-bible-input {
+  width: 100%;
+  font-size: var(--font-ui-medium);
+}
+
+.obsidian-bible-options {
+  display: flex;
+  align-items: center;
+  gap: var(--size-4-2);
+  color: var(--text-muted);
+  font-size: var(--font-ui-small);
+}
+
+.obsidian-bible-result {
+  min-height: 4em;
+  max-height: 50vh;
+  overflow-y: auto;
+}
+
+.obsidian-bible-heading {
+  margin-bottom: var(--size-4-2);
+  font-weight: var(--font-semibold);
+}
+
+.obsidian-bible-verse-number {
+  margin-right: 0.25em;
+  color: var(--text-muted);
+  font-size: var(--font-smaller);
+  vertical-align: super;
+}
+
+.obsidian-bible-message {
+  color: var(--text-muted);
+}
+
+.obsidian-bible-message.is-error {
+  color: var(--text-error);
+}
+
+.obsidian-bible-hint {
+  color: var(--text-faint);
+  font-size: var(--font-ui-smaller);
+}
+
+.obsidian-bible-insert {
+  margin-left: auto;
+}

@@ -1,0 +1,33 @@
+{
+  "name": "obsidian-bible",
+  "version": "0.1.0",
+  "description": "Keyboard-first Bible reference lookup for Obsidian, in Traditional Chinese.",
+  "license": "MIT",
+  "private": true,
+  "type": "module",
+  "main": "main.js",
+  "packageManager": "pnpm@12.15.0",
+  "scripts": {
+    "dev": "node esbuild.config.mjs",
+    "build": "pnpm typecheck && node esbuild.config.mjs production",
+    "lint": "eslint . && prettier --check .",
+    "format": "prettier --write .",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "data:build": "node scripts/build-data.mjs"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@types/node": "^26.6.5",
+    "esbuild": "^0.28.2",
+    "eslint": "^10.13.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-obsidianmd": "^0.4.2",
+    "globals": "^17.13.0",
+    "obsidian": "^1.14.4",
+    "prettier": "^3.9.10",
+    "typescript": "~6.0.3",
+    "typescript-eslint": "^8.72.0",
+    "vitest": "^5.0.5"
+  }
+}
