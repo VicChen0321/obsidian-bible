@@ -1,6 +1,6 @@
 import { PluginSettingTab, Setting, type App } from "obsidian";
 import type { InsertFormat } from "../core/formatter";
-import type ObsidianBiblePlugin from "../main";
+import type BibleLookupPlugin from "../main";
 import { INSERT_FORMATS } from "./settings";
 
 const FORMAT_LABELS: Record<InsertFormat, string> = {
@@ -12,7 +12,7 @@ const FORMAT_LABELS: Record<InsertFormat, string> = {
 export class BibleSettingTab extends PluginSettingTab {
   constructor(
     app: App,
-    private readonly plugin: ObsidianBiblePlugin,
+    private readonly plugin: BibleLookupPlugin,
   ) {
     super(app, plugin);
   }

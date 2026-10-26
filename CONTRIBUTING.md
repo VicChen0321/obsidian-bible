@@ -1,6 +1,6 @@
 # Contributing
 
-Thanks for helping with Obsidian Bible.
+Thanks for helping with Bible Lookup.
 Small, focused changes are easiest to review.
 
 ## Setup
@@ -35,15 +35,15 @@ Verify UI changes by hand in a vault you do not mind modifying.
 
    ```bash
    VAULT=/path/to/vault
-   mkdir -p "$VAULT/.obsidian/plugins/obsidian-bible"
+   mkdir -p "$VAULT/.obsidian/plugins/bible-lookup"
    for f in main.js manifest.json styles.css; do
-     ln -sf "$PWD/$f" "$VAULT/.obsidian/plugins/obsidian-bible/$f"
+     ln -sf "$PWD/$f" "$VAULT/.obsidian/plugins/bible-lookup/$f"
    done
    ```
 
-3. Restart Obsidian or reload the vault, then enable "Obsidian Bible" under Settings, Community plugins.
+3. Restart Obsidian or reload the vault, then enable "Bible Lookup" under Settings, Community plugins.
 4. After each rebuild, reload the plugin.
-   Disable and re-enable it, or run `obsidian plugin:reload id=obsidian-bible` if you use the Obsidian CLI.
+   Disable and re-enable it, or run `obsidian plugin:reload id=bible-lookup` if you use the Obsidian CLI.
 
 Check at least the following:
 

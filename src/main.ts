@@ -6,9 +6,10 @@ import { DEFAULT_SETTINGS, sanitizeSettings, type BibleSettings } from "./settin
 import { BibleSettingTab } from "./settings/settings-tab";
 import { LookupModal } from "./ui/lookup-modal";
 
-export default class ObsidianBiblePlugin extends Plugin {
+export default class BibleLookupPlugin extends Plugin {
   override settings: BibleSettings = { ...DEFAULT_SETTINGS };
   readonly service = new BibleService(createBundledProvider());
+  private modal: LookupModal | undefined;
 
   override async onload(): Promise<void> {
     this.settings = sanitizeSettings(await this.loadData());
@@ -35,6 +36,11 @@ export default class ObsidianBiblePlugin extends Plugin {
     this.addSettingTab(new BibleSettingTab(this.app, this));
   }
 
+  override onunload(): void {
+    // A modal outlives the plugin unless it is closed explicitly.
+    this.modal?.close();
+  }
+
   async saveSettings(): Promise<void> {
     await this.saveData(this.settings);
   }
@@ -50,11 +56,17 @@ export default class ObsidianBiblePlugin extends Plugin {
     initialQuery?: string | undefined;
   }): Promise<void> {
     const translationId = this.resolveTranslationId(await this.service.listTranslations());
-    new LookupModal(this.app, {
+    this.modal?.close();
+    const modal = new LookupModal(this.app, {
       service: this.service,
       translationId,
       insertFormat: this.settings.insertFormat,
       ...options,
-    }).open();
+      onDidClose: () => {
+        if (this.modal === modal) this.modal = undefined;
+      },
+    });
+    this.modal = modal;
+    modal.open();
   }
 }

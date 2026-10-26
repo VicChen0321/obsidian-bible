@@ -1,9 +1,9 @@
 {
-  "id": "obsidian-bible",
-  "name": "Obsidian Bible",
+  "id": "bible-lookup",
+  "name": "Bible Lookup",
   "version": "0.1.0",
-  "minAppVersion": "1.5.0",
-  "description": "Keyboard-first Bible reference lookup and insertion in Traditional Chinese.",
+  "minAppVersion": "1.14.4",
+  "description": "Look up Bible passages from a Traditional Chinese reference and insert them into your note using only the keyboard.",
   "author": "Vic Chen",
   "authorUrl": "https://vicchen.dev",
   "isDesktopOnly": false

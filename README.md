@@ -1,4 +1,4 @@
-# Obsidian Bible
+# Bible Lookup
 
 A lightweight, keyboard-first Bible reference lookup plugin for [Obsidian](https://obsidian.md).
 It is built for taking sermon notes and studying scripture without leaving the editor.
@@ -22,7 +22,7 @@ It does one thing: find a passage and put it in your note.
 
 ## Commands
 
-Open the command palette and search for "Obsidian Bible".
+Open the command palette and search for "Bible Lookup".
 
 | Command                   | What it does                                                                                   |
 | ------------------------- | ---------------------------------------------------------------------------------------------- |
@@ -92,15 +92,21 @@ Only Traditional Chinese book names are understood for now.
 **Licensing:** see [DATA_LICENSES.md](DATA_LICENSES.md) for where the text came from and what has not been verified.
 The text has not been confirmed as free to redistribute, so check that file before publishing or redistributing this plugin.
 
+## Privacy and network use
+
+The plugin makes no network requests, has no telemetry or ads, and does not read or write files outside your vault.
+The scripture text is bundled inside the plugin.
+
 ## Installation
 
 The plugin is not in the Obsidian community plugin directory yet.
 
-To install a build manually:
+To install a release manually:
 
-1. Create the folder `<your vault>/.obsidian/plugins/obsidian-bible/`.
-2. Copy `main.js`, `manifest.json` and `styles.css` into it.
-3. In Obsidian, open Settings, then Community plugins, and enable "Obsidian Bible".
+1. Download `main.js`, `manifest.json` and `styles.css` from the [latest release](https://github.com/VicChen0321/bible-lookup/releases/latest).
+2. Create the folder `<your vault>/.obsidian/plugins/bible-lookup/`.
+3. Copy the three files into it.
+4. In Obsidian, open Settings, then Community plugins, and enable "Bible Lookup".
 
 To develop against a local vault, see [CONTRIBUTING.md](CONTRIBUTING.md).
 

@@ -17,6 +17,8 @@ export interface LookupModalOptions {
   /** When set, Enter inserts the passage into this editor. */
   editor?: Editor | undefined;
   initialQuery?: string | undefined;
+  /** Called once the modal has closed, so the owner can drop its reference. */
+  onDidClose?: (() => void) | undefined;
 }
 
 const FORMAT_LABELS: Record<InsertFormat, string> = {
@@ -43,11 +45,11 @@ export class LookupModal extends Modal {
 
   override onOpen(): void {
     const { contentEl, options } = this;
-    contentEl.addClass("obsidian-bible-modal");
+    contentEl.addClass("bible-lookup-modal");
 
     this.inputEl = contentEl.createEl("input", {
       type: "text",
-      cls: "obsidian-bible-input",
+      cls: "bible-lookup-input",
       attr: {
         placeholder: "彼前 1:24-25",
         spellcheck: "false",
@@ -59,7 +61,7 @@ export class LookupModal extends Modal {
     this.inputEl.addEventListener("input", () => void this.refresh());
 
     if (options.editor) {
-      const optionsEl = contentEl.createDiv({ cls: "obsidian-bible-options" });
+      const optionsEl = contentEl.createDiv({ cls: "bible-lookup-options" });
       optionsEl.createSpan({ text: "Insert as" });
       const select = optionsEl.createEl("select", { cls: "dropdown" });
       for (const format of INSERT_FORMATS) {
@@ -71,17 +73,17 @@ export class LookupModal extends Modal {
         this.inputEl.focus();
       });
       this.insertButton = optionsEl.createEl("button", {
-        cls: "mod-cta obsidian-bible-insert",
+        cls: "mod-cta bible-lookup-insert",
         text: "Insert",
       });
       this.insertButton.disabled = true;
       this.insertButton.addEventListener("click", () => this.insert());
     }
 
-    this.resultEl = contentEl.createDiv({ cls: "obsidian-bible-result" });
+    this.resultEl = contentEl.createDiv({ cls: "bible-lookup-result" });
     if (!Platform.isMobile) {
       contentEl.createDiv({
-        cls: "obsidian-bible-hint",
+        cls: "bible-lookup-hint",
         text: options.editor ? "Enter to insert, Esc to close" : "Esc to close",
       });
     }
@@ -101,6 +103,7 @@ export class LookupModal extends Modal {
   override onClose(): void {
     this.requestId++;
     this.contentEl.empty();
+    this.options.onDidClose?.();
   }
 
   private async refresh(): Promise<void> {
@@ -130,7 +133,7 @@ export class LookupModal extends Modal {
   private showMessage(message: string, isError = false): void {
     this.resultEl.empty();
     this.resultEl.createDiv({
-      cls: isError ? "obsidian-bible-message is-error" : "obsidian-bible-message",
+      cls: isError ? "bible-lookup-message is-error" : "bible-lookup-message",
       text: message,
     });
   }
@@ -140,15 +143,15 @@ export class LookupModal extends Modal {
     this.resultEl.empty();
     const label = formatReference(reference, translation.language, "full");
     this.resultEl.createDiv({
-      cls: "obsidian-bible-heading",
+      cls: "bible-lookup-heading",
       text: showsTranslationName(translation.language)
         ? `${label} · ${translation.abbreviation}`
         : label,
     });
-    const body = this.resultEl.createDiv({ cls: "obsidian-bible-passage" });
+    const body = this.resultEl.createDiv({ cls: "bible-lookup-passage" });
     for (const verse of verses) {
       const label = verse.endNumber ? `${verse.number}-${verse.endNumber}` : `${verse.number}`;
-      body.createSpan({ cls: "obsidian-bible-verse-number", text: label });
+      body.createSpan({ cls: "bible-lookup-verse-number", text: label });
       body.createSpan({ text: verse.text });
     }
   }
